@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-auth
+  template:
+    metadata:
+      labels:
+        app: service-auth
+    spec:
+      containers:
+        - name: service-auth
+          image: blandskron/service-auth:v1.2
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://db-digitus:5432/db_digitus
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: D1g1tus_.2024
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: org.postgresql.Driver
+            - name: APP_BASE_URL_USER_SERVICE
+              value: http://service-user:8081/
+            - name: APP_BASE_URL_PUBLISH_SERVICE
+              value: http://service-logevent:8080
+          ports:
+            - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-auth
+spec:
+  ports:
+    - port: 8082
+      targetPort: 8082
+  selector:
+    app: service-auth

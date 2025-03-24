@@ -55,3 +55,21 @@ Las contribuciones son bienvenidas. Si encuentras algún problema o deseas suger
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 ````
+
+kubectl apply -f k8s/configmaps/kubeconfig-configmap.yaml
+kubectl apply -f k8s/deployments/backend-deployment.yaml
+kubectl apply -f k8s/services/backend-service.yaml
+
+kubectl apply -f k8s/persistent-volumes/portainer-pvc.yaml
+kubectl apply -f k8s/deployments/portainer-deployment.yaml
+kubectl apply -f k8s/services/portainer-service.yaml
+
+kubectl apply -f k8s/deployments/clusterrole.yaml
+kubectl apply -f k8s/deployments/clusterrolebinding.yaml
+
+kubectl apply -f k8s/deployments/postgres-deployment.yaml
+kubectl apply -f k8s/deployments/auth-deployment.yaml
+kubectl apply -f k8s/deployments/user-deployment.yaml
+
+kubectl apply -f k8s/deployments/pgadmin-deployment.yaml
+kubectl apply -f k8s/deployments/traefik-deployment.yaml

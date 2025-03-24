@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-digitus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-digitus
+  template:
+    metadata:
+      labels:
+        app: db-digitus
+    spec:
+      containers:
+        - name: db-digitus
+          image: postgres:13
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: D1g1tus_.2024
+            - name: POSTGRES_DB
+              value: db_digitus
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-digitus-data
+      volumes:
+        - name: db-digitus-data
+          persistentVolumeClaim:
+            claimName: db-digitus-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-digitus
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: db-digitus
