@@ -67,9 +67,24 @@ kubectl apply -f k8s/services/portainer-service.yaml
 kubectl apply -f k8s/deployments/clusterrole.yaml
 kubectl apply -f k8s/deployments/clusterrolebinding.yaml
 
+kubectl apply -f k8s/persistent-volumes/postgres-pvc.yaml
+kubectl apply -f k8s/persistent-volumes/postgres-pv.yaml
 kubectl apply -f k8s/deployments/postgres-deployment.yaml
+kubectl apply -f k8s/services/postgres-service.yaml
+
 kubectl apply -f k8s/deployments/auth-deployment.yaml
+kubectl apply -f k8s/services/auth-service.yaml
+kubectl apply -f k8s/persistent-volumes/auth-pvc.yaml
+
 kubectl apply -f k8s/deployments/user-deployment.yaml
+kubectl apply -f k8s/services/user-service.yaml
+kubectl apply -f k8s/persistent-volumes/user-pvc.yaml
+
+kubectl apply -f k8s/persistent-volumes/ingress.yaml
+kubectl apply -f k8s/persistent-volumes/ingress-nginx-controller.yaml
+
 
 kubectl apply -f k8s/deployments/pgadmin-deployment.yaml
-kubectl apply -f k8s/deployments/traefik-deployment.yaml
+
+kubectl apply -f k8s/test/pgadmin-ingress.yaml
+kubectl apply -f k8s/test/ui-ingress.yaml

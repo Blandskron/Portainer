@@ -1,12 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  # Nombre del rol
-  name: dashboard-access
-rules:
+  rules:
   - apiGroups: [""]
-    resources: ["pods", "services", "namespaces", "persistentvolumeclaims", "secrets", "configmaps"]
-    verbs: ["list", "get"]
-  - apiGroups: ["networking.k8s.io"]
-    resources: ["ingresses"]
+    resources: ["resourcequotas"]
     verbs: ["list", "get"]

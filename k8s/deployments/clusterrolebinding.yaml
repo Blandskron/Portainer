@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: dashboard-access-binding
+  name: default-service-account-role-binding
 subjects:
   - kind: ServiceAccount
     name: default
     namespace: default
 roleRef:
   kind: ClusterRole
-  name: dashboard-access
+  name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
